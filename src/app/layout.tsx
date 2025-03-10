@@ -9,23 +9,25 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Cloud Hosting",
-  description: "Cloud Hosting project",
+	title: "Cloud Hosting",
+	description: "Cloud Hosting project",
 };
-
 interface RootLayoutProps {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  return (
-    <html lang="en">
-      <body className={`${inter.className} bg-bodyColor`}>
-        <Header />
-        <ToastContainer theme="colored" position="top-center" />
-        <main className="min-h-[calc(100vh-150px)]">{children}</main>
-        <Footer />
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<body className={`${inter.className} bg-bodyColor`}>
+				<Header />
+				<ToastContainer
+					theme="colored"
+					position="top-center"
+				/>
+				<main className="min-h-[calc(100vh-150px)]">{children}</main>
+				<Footer />
+			</body>
+		</html>
+	);
 }
