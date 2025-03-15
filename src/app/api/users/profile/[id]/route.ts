@@ -4,6 +4,7 @@ import { verifyToken } from "@/utils/verifyToken";
 import { UpdatedUserDTo } from "@/utils/dtos";
 import { UpdateUserSchema } from "@/utils/validationShemas";
 import bcrypt from "bcryptjs";
+import { cookies } from "next/headers";
 
 /**
  *@method  DELETE
@@ -32,12 +33,7 @@ export async function DELETE(request: NextRequest, { params }: Props) {
     if (userFromToken !== null && userFromToken.id === user.id) {
       // deleting the user
       await prisma.user.delete({ where: { id: parseInt(params.id) } });
-
-      // Delete all comments for user
-      const commentIds = user?.comments.map((comment) => comment.id);
-      await prisma.comment.deleteMany({
-        where: { id: { in: commentIds } },
-      });
+      cookies().delete("jwtToken");
 
       return NextResponse.json(
         { message: "your profile (account) has been deleted" },

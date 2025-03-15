@@ -1,4 +1,5 @@
 "use client";
+import route from "@/utils/route";
 import Link from "next/link";
 import { useState } from "react";
 import { GrTechnology } from "react-icons/gr";
@@ -15,7 +16,7 @@ const Navbar = ({ isAdmin }: NavbarProps) => {
     <nav className="flex items-center justify-between flex-1">
       <div>
         <Link
-          href="/"
+          href={route.home}
           className="md:flex items-center text-2xl font-bold text-fuchsia-500 uppercase hidden "
         >
           Cloud
@@ -39,17 +40,17 @@ const Navbar = ({ isAdmin }: NavbarProps) => {
         }}
       >
         <ul className="navLinks relative z-50 flex items-start md:items-center flex-col md:flex-row ps-4 md:ps-0 pb-3 md:pb-0 gap-3 lg:gap-8">
-          <Link onClick={() => setToggle(false)} href="/">
+          <Link onClick={() => setToggle(false)} href={route.home}>
             Home
           </Link>
-          <Link onClick={() => setToggle(false)} href="/about">
+          <Link onClick={() => setToggle(false)} href={route.about}>
             About
           </Link>
-          <Link onClick={() => setToggle(false)} href="/articles?pageNumber=1">
+          <Link onClick={() => setToggle(false)} href={route.articles}>
             Articles
           </Link>
           {isAdmin && (
-            <Link onClick={() => setToggle(false)} href="/admin">
+            <Link onClick={() => setToggle(false)} href={route.admin}>
               Dashboard
             </Link>
           )}

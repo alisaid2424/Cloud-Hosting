@@ -1,3 +1,4 @@
+import route from "@/utils/route";
 import Link from "next/link";
 import React from "react";
 
@@ -8,7 +9,7 @@ const NotFoundPage = () => {
       <p className="text-xl text-gray-500 mt-3 mb-5 w-96 text-center max-w-full">
         Page not found. Please check the URL and try again.
       </p>
-      <Link href="/" className="underline text-xl text-blue-600">
+      <Link href={route.home} className="underline text-xl text-blue-600">
         Go To Home Page &rarr;
       </Link>
     </section>

@@ -1,37 +1,36 @@
 "use client";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import ButtonSpinner from "@/components/ButtonSpinner";
 import { DOMAIN } from "@/utils/constants";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { RegisterSchema, TRegisterType } from "@/utils/validationShemas";
+import Input from "@/components/forms/Input";
 
 const RegisterForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [input, setInput] = useState({
-    username: "",
-    email: "",
-    password: "",
+
+  // Initialize react-hook-form with zod validation resolver
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TRegisterType>({
+    mode: "onBlur",
+    resolver: zodResolver(RegisterSchema),
   });
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
-  };
-
-  const formSubmitHandler = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (input.username === "") return toast.error("Username is required");
-    if (input.email === "") return toast.error("Email is required");
-    if (input.password === "") return toast.error("Password is required");
+  // Form submit handler
+  const formSubmitHandler: SubmitHandler<TRegisterType> = async (data) => {
+    if (isLoading) return;
 
     try {
       setIsLoading(true);
-      await axios.post(`${DOMAIN}/api/users/register`, {
-        username: input.username,
-        email: input.email,
-        password: input.password,
-      });
+      await axios.post(`${DOMAIN}/api/users/register`, data);
       router.replace("/");
       setIsLoading(false);
       router.refresh();
@@ -43,31 +42,37 @@ const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={formSubmitHandler} className="flex flex-col">
-      <input
-        className="input"
-        type="text"
-        placeholder="Enter Your Username"
-        value={input.username}
+    <form
+      onSubmit={handleSubmit(formSubmitHandler)}
+      className="flex flex-col space-y-3"
+    >
+      <Input
         name="username"
-        onChange={handleOnChange}
+        type="text"
+        register={register}
+        error={errors.username?.message}
+        disabled={isLoading}
+        placeholder="Enter Your Username"
       />
-      <input
-        className="input"
-        type="email"
-        placeholder="Enter Your Email"
-        value={input.email}
+
+      <Input
         name="email"
-        onChange={handleOnChange}
+        type="email"
+        register={register}
+        error={errors.email?.message}
+        disabled={isLoading}
+        placeholder="Enter Your Email"
       />
-      <input
-        className="input"
-        type="password"
-        placeholder="Enter Your Password"
-        value={input.password}
+
+      <Input
         name="password"
-        onChange={handleOnChange}
+        type="password"
+        register={register}
+        error={errors.password?.message}
+        disabled={isLoading}
+        placeholder="Enter Your Password"
       />
+
       <button
         type="submit"
         disabled={isLoading}

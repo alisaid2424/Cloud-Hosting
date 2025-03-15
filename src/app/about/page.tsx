@@ -3,8 +3,8 @@ import cloudHosting from "../../../public/cloud-hosting.png";
 
 const AboutPage = () => {
   return (
-    <section className="container flex items-center justify-around flex-col lg:flex-row">
-      <div className="basis-2/5">
+    <section className="container flex items-center justify-between flex-col lg:flex-row min-h-[calc(100vh-150px)]">
+      <div className="basis-[45%]">
         <h2 className="py-5 text-3xl font-bold">About This App</h2>
         <p className="text-base text-gray-600 leading-[1.7]">
           The best web hosting solution for your online success. Sed in
@@ -21,7 +21,7 @@ const AboutPage = () => {
           consectetur lectus nisi in
         </p>
       </div>
-      <div className="basis-2/5">
+      <div className="basis-[45%]">
         <Image
           src={cloudHosting}
           width={500}

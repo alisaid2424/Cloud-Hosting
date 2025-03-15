@@ -1,70 +1,79 @@
 "use client";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { DOMAIN } from "@/utils/constants";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import {
+  ArticleSchemaType,
+  CreateArticleSchema,
+} from "@/utils/validationShemas";
+import Input from "@/components/forms/Input";
+import ButtonSpinner from "@/components/ButtonSpinner";
 
 const AddArticlesForm = () => {
   const router = useRouter();
-  const [input, setInput] = useState({
-    title: "",
-    description: "",
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Initialize react-hook-form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ArticleSchemaType>({
+    mode: "onBlur",
+    resolver: zodResolver(CreateArticleSchema),
   });
 
-  const handleOnChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
-  };
-
-  const formSubmitHandler = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (input.title === "") return toast.error("Title is required");
-    if (input.description === "") return toast.error("Description is required");
+  const formSubmitHandler: SubmitHandler<ArticleSchemaType> = async (data) => {
+    if (isLoading) return;
 
     try {
-      await axios.post(`${DOMAIN}/api/articles`, {
-        title: input.title,
-        description: input.description,
-      });
-      toast.success("Article added successfully");
-      setInput({
-        title: "",
-        description: "",
-      });
-      router.push("/admin/articles-table?pageNumber=1");
+      setIsLoading(true);
+      await axios.post(`${DOMAIN}/api/articles`, data);
       router.refresh();
+      router.push("/admin/articles-table?pageNumber=1");
+      toast.success("Article added successfully");
+      setIsLoading(false);
     } catch (error: any) {
       toast.error(error?.response?.data.message);
+      setIsLoading(false);
       console.log(error);
     }
   };
 
   return (
-    <form onSubmit={formSubmitHandler} className="flex flex-col">
-      <input
-        className="input"
-        type="text"
+    <form
+      onSubmit={handleSubmit(formSubmitHandler)}
+      className="flex flex-col space-y-3"
+    >
+      <Input
         name="title"
+        type="text"
+        register={register}
+        error={errors.title?.message}
+        disabled={isLoading}
         placeholder="Enter Your Title"
-        value={input.title}
-        onChange={handleOnChange}
       />
-      <textarea
-        className="input resize-none"
+
+      <Input
         name="description"
+        type="textarea"
+        register={register}
+        error={errors.description?.message}
+        disabled={isLoading}
         placeholder="Enter Articles Description"
-        value={input.description}
-        onChange={handleOnChange}
-        rows={5}
-      ></textarea>
+        isTextArea={true}
+      />
 
       <button
         type="submit"
-        className="text-2xl text-white bg-blue-700 hover:bg-blue-900 p-2 rounded-lg font-bold transition-all duration-300"
+        disabled={isLoading}
+        className="text-2xl text-white bg-blue-700 hover:bg-blue-900 p-2 rounded-lg font-bold transition-all duration-300 disabled:opacity-50"
       >
-        Add
+        {isLoading ? <ButtonSpinner /> : "Add"}
       </button>
     </form>
   );

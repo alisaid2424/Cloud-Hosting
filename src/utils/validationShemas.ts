@@ -18,6 +18,8 @@ export const CreateArticleSchema = z.object({
     .max(1000),
 });
 
+export type ArticleSchemaType = z.infer<typeof CreateArticleSchema>;
+
 // Create Register Schema
 export const RegisterSchema = z.object({
   username: z
@@ -43,6 +45,8 @@ export const RegisterSchema = z.object({
     .min(6, { message: "password should be at least 6 characters long" }),
 });
 
+export type TRegisterType = z.infer<typeof RegisterSchema>;
+
 // Create Login Schema
 export const LoginSchema = z.object({
   email: z
@@ -60,6 +64,8 @@ export const LoginSchema = z.object({
     })
     .min(6, { message: "password should be at least 6 characters long" }),
 });
+
+export type TLoginType = z.infer<typeof LoginSchema>;
 
 // Update User Schema
 export const UpdateUserSchema = z.object({
@@ -88,6 +94,8 @@ export const UpdateUserSchema = z.object({
     .min(6, { message: "password should be at least 6 characters long" })
     .optional(),
 });
+
+export type TEditUserType = z.infer<typeof UpdateUserSchema>;
 
 // Create a new Comment
 export const CreateCommentSchema = z.object({

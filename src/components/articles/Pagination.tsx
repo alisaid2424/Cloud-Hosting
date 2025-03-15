@@ -14,7 +14,7 @@ const Pagination = ({ pages, pageNumber, route }: PaginationProps) => {
   const next = pageNumber + 1;
 
   return (
-    <div className="flex items-center justify-center mt-7 pb-7 max-w-full">
+    <div className="flex items-center justify-center mt-7 max-w-full">
       <Link
         href={prev >= 1 ? `${route}?pageNumber=${prev}` : "#"}
         className={`font-light text-2xl sm:text-4xl text-purple-600 ${prev < 1 ? "cursor-not-allowed opacity-50" : ""}`}

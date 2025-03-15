@@ -1,11 +1,10 @@
 import { GetArticleById } from "@/apiCalls/ArticlesApiCall";
 import AddCommentInput from "@/components/comments/AddCommentInput";
 import CommentItem from "@/components/comments/CommentItem";
+import route from "@/utils/route";
 import { ArticleSingle } from "@/utils/types";
 import { verifyTokenForPages } from "@/utils/verifyToken";
-import { request } from "http";
 import { cookies } from "next/headers";
-
 import Link from "next/link";
 
 interface SingleArticlePageProps {
@@ -49,7 +48,7 @@ const SingleArticlePage = async ({ params }: SingleArticlePageProps) => {
       ))}
 
       <Link
-        href="/articles?pageNumber=1"
+        href={route.articles}
         className="block my-7 text-xl text-blue-600 underline"
       >
         Back &rarr;

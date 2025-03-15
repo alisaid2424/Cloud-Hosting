@@ -1,4 +1,5 @@
 "use client";
+import route from "@/utils/route";
 import Link from "next/link";
 
 interface ErrorPageProps {
@@ -26,7 +27,10 @@ const ArticleErrorPage = ({ error, reset }: ErrorPageProps) => {
         Try Again
       </button>
 
-      <Link href="/" className="text-xl block mt-7 text-blue-600 underline">
+      <Link
+        href={route.home}
+        className="text-xl block mt-7 text-blue-600 underline"
+      >
         Go To Home Page &rarr;
       </Link>
     </div>
