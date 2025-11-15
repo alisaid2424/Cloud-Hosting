@@ -20,7 +20,7 @@ const ButtonLogout = () => {
   return (
     <button
       onClick={handleButtonClick}
-      className="text-white bg-gray-700 text-base px-3 py-1 rounded-md"
+      className="text-white bg-gray-700 text-base px-3 py-2 rounded-md"
     >
       Log out
     </button>
