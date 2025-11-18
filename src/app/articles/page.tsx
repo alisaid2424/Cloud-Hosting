@@ -19,7 +19,7 @@ const ArticlesPage = async ({ searchParams }: ArticlesPageProps) => {
   const pages = Math.ceil(count / ARTICLE_PER_PAGE);
 
   return (
-    <div className="container mt-12">
+    <div className="container max-w-7xl mt-12 mb-8">
       <SearchArticlesInput />
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 my-5">

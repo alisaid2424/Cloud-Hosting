@@ -83,7 +83,7 @@ const EditArticleForm = ({ article }: EditArticleFormProps) => {
 
       <button
         type="submit"
-        className="text-2xl text-white bg-green-700 hover:bg-green-900 p-2 rounded-lg font-bold transition-all duration-300"
+        className="text-base sm:text-lg text-white bg-green-700 hover:bg-green-900 p-2 rounded-lg font-bold transition-all duration-300"
       >
         {isLoading ? <ButtonSpinner /> : "Edit"}
       </button>

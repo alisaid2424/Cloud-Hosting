@@ -5,11 +5,16 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "react-toastify";
 
-const ButtonLogout = () => {
+const ButtonLogout = ({
+  setIsOpen,
+}: {
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const router = useRouter();
   const handleButtonClick = async () => {
     try {
       await axios.get(`${DOMAIN}/api/users/logout`);
+      setIsOpen(false);
       router.replace("/");
       router.refresh();
     } catch (error: any) {
@@ -20,9 +25,9 @@ const ButtonLogout = () => {
   return (
     <button
       onClick={handleButtonClick}
-      className="text-white bg-gray-700 text-base px-3 py-2 rounded-md"
+      className="text-white bg-blue-600 text-base px-4 py-2 rounded-full"
     >
-      Log out
+      Logout
     </button>
   );
 };

@@ -31,63 +31,69 @@ const AdminTable: FC<AdminTableProps> = ({
         {type === "articles" ? "Articles" : "Comments"}
       </h2>
 
-      <table className="table w-full text-left">
-        <thead>
-          <tr className="border-t-2 border-b-2 border-gray-500 lg:text-xl">
-            {columns.map((column) => (
-              <th key={column.key} className="p-3 lg:p-2">
-                {column.name}
-              </th>
-            ))}
-            <th className="p-3 text-center">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item) => (
-            <tr key={item.id} className="border-t-2 border-b-2 border-gray-300">
+      <div className="overflow-x-auto py-3 mt-5">
+        <table className="table w-full min-w-[950px] text-left">
+          <thead>
+            <tr className="border-t-2 border-b-2 border-gray-500 lg:text-xl">
               {columns.map((column) => (
-                <td key={column.key} className="p-3 text-gray-700">
-                  {column.key === "createdAt"
-                    ? new Date(item[column.key]).toDateString()
-                    : item[column.key]}
-                </td>
+                <th key={column.key} className="p-3 lg:p-2">
+                  {column.name}
+                </th>
               ))}
-              <td className="py-2 sm:py-0 text-center">
-                {type === "articles" ? (
-                  <>
-                    <Link
-                      href={`/admin/articles-table/edit/${item.id}`}
-                      className="bg-green-600 text-white rounded-lg py-1 px-2 mb-2 sm:mb-0 sm:me-3 hover:bg-green-800 transition-all duration-300 inline-block"
-                    >
-                      Edit
-                    </Link>
-                    <DeleteArticleButton articleId={item.id} />
-                  </>
-                ) : (
-                  <DeleteCommentButton commentId={item.id} />
-                )}
-              </td>
-
-              <td className="hidden lg:inline-block py-3">
-                {type === "articles" && (
-                  <Link
-                    href={`/articles/${item.id}`}
-                    className="bg-blue-600 text-white rounded-lg py-2 px-3 hover:bg-blue-800 transition-all duration-300 "
-                  >
-                    Read More
-                  </Link>
-                )}
-              </td>
+              <th className="p-3">Actions</th>
+              <th></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.map((item) => (
+              <tr
+                key={item.id}
+                className="border-t-2 border-b-2 border-gray-300"
+              >
+                {columns.map((column) => (
+                  <td key={column.key} className="p-3 text-gray-700">
+                    {column.key === "createdAt"
+                      ? new Date(item[column.key]).toDateString()
+                      : item[column.key]}
+                  </td>
+                ))}
+                <td className="py-2 text-center">
+                  {type === "articles" ? (
+                    <div className="flex items-center gap-2">
+                      <Link
+                        href={`/admin/articles-table/edit/${item.id}`}
+                        className="bg-green-600 text-white rounded-lg py-1 px-2 hover:bg-green-800 transition-all duration-300"
+                      >
+                        Edit
+                      </Link>
+                      <DeleteArticleButton articleId={item.id} />
+                    </div>
+                  ) : (
+                    <DeleteCommentButton commentId={item.id} />
+                  )}
+                </td>
 
-      <Pagination
-        pageNumber={parseInt(pageNumber)}
-        pages={pages}
-        route={`/admin/${type}-table`}
-      />
+                <td className="py-3">
+                  {type === "articles" && (
+                    <Link
+                      href={`/articles/${item.id}`}
+                      className="bg-blue-600 text-white rounded-lg py-2 px-3 hover:bg-blue-800 transition-all duration-300 "
+                    >
+                      Read More
+                    </Link>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <Pagination
+          pageNumber={parseInt(pageNumber)}
+          pages={pages}
+          route={`/admin/${type}-table`}
+        />
+      </div>
     </section>
   );
 };

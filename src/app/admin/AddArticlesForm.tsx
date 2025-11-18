@@ -71,9 +71,9 @@ const AddArticlesForm = () => {
       <button
         type="submit"
         disabled={isLoading}
-        className="text-2xl text-white bg-blue-700 hover:bg-blue-900 p-2 rounded-lg font-bold transition-all duration-300 disabled:opacity-50"
+        className="text-base sm:text-lg text-white bg-blue-700 hover:bg-blue-900 p-2 rounded-lg font-bold transition-all duration-300 disabled:opacity-50"
       >
-        {isLoading ? <ButtonSpinner /> : "Add"}
+        {isLoading ? <ButtonSpinner /> : "Add Article"}
       </button>
     </form>
   );

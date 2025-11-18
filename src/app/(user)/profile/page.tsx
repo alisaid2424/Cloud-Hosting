@@ -18,10 +18,10 @@ const ProfilePage = async () => {
 
   return (
     <div
-      className="absolute bg-cover mt-10 w-[90%] md:w-2/4 rounded-lg top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+      className="absolute bg-cover w-[90%] md:w-2/4 rounded-lg top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 sm:my-5"
       style={{ backgroundImage: "url(bg-profile.png)" }}
     >
-      <div className="w-full  bg-white bg-opacity-80 rounded-lg p-5 min-h-96">
+      <div className="w-full bg-white bg-opacity-80 rounded-lg p-5 min-h-96">
         <Image
           src={imgProfile}
           width={120}

@@ -18,7 +18,7 @@ const SingleArticlePage = async ({ params }: SingleArticlePageProps) => {
   const article: ArticleSingle = await GetArticleById(params.id);
 
   return (
-    <section className="container w-full mx-auto px-5 pt-8 md:w-2/3">
+    <section className="container w-full mx-auto px-5 py-10 md:w-2/3">
       <div className="p-7 rounded-lg bg-white mb-7">
         <h2 className="text-3xl font-bold text-gray-800 capitalize mb-2">
           {article.title}
@@ -49,9 +49,9 @@ const SingleArticlePage = async ({ params }: SingleArticlePageProps) => {
 
       <Link
         href={route.articles}
-        className="block my-7 text-xl text-blue-600 underline"
+        className="bg-fuchsia-500 text-white py-2 px-4 rounded-full text-base"
       >
-        Back &rarr;
+        Go Back
       </Link>
     </section>
   );

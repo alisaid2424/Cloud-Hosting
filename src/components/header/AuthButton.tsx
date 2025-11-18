@@ -14,7 +14,7 @@ const AuthButton = ({
     <>
       {user ? (
         <div className="flex items-center gap-7">
-          <ButtonLogout />
+          <ButtonLogout setIsOpen={setIsOpen} />
           <Link
             href={route.profile}
             onClick={() => setIsOpen(false)}

@@ -14,7 +14,7 @@
         text-lg;
   }
   .sidbarLink {
-    @apply flex items-center justify-center lg:justify-start w-full text-xl mb-5 lg:border-b border-gray-300 hover:border-yellow-200 hover:text-yellow-200 transition duration-300;
+    @apply flex items-center justify-center lg:justify-start w-full text-xl mb-4 pb-4 lg:border-b border-gray-300 hover:border-yellow-200 hover:text-yellow-200 transition duration-300;
   }
   .btn-link {
     @apply border-2 bg-purple-600 text-white opacity-50 transition-all duration-300  hover:opacity-100 flex items-center justify-center w-5 h-5 sm:w-[30px] sm:h-[30px] mx-2 sm:mx-3 rounded-full p-3  

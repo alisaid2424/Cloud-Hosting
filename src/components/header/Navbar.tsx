@@ -24,7 +24,9 @@ const Navbar = ({ user }: { user: User }) => {
 
   return (
     <header className="sticky top-0 w-full z-50">
-      <div className="container max-w-7xl flex items-center justify-between py-5">
+      <div
+        className={`${pathname.startsWith(route.admin) ? "px-6" : "container max-w-7xl"}  flex items-center justify-between py-5`}
+      >
         <Logo />
 
         <div
@@ -53,7 +55,11 @@ const Navbar = ({ user }: { user: User }) => {
             </Link>
           ))}
           {user?.isAdmin && (
-            <Link onClick={() => setIsOpen(false)} href={route.admin}>
+            <Link
+              onClick={() => setIsOpen(false)}
+              href={route.admin}
+              className={`max-md:text-white hover:text-fuchsia-500 text-lg font-medium transition ${pathname.startsWith(route.admin) && "!text-fuchsia-500"}`}
+            >
               Dashboard
             </Link>
           )}

@@ -28,7 +28,7 @@ const Input = <TFieldValue extends FieldValues>({
           {...register(name)}
           disabled={disabled}
           rows={5}
-          className={`block w-full input ${error ? "border-red-500" : ""} resize-none p-2`}
+          className={`block w-full text-sm sm:text-base input ${error ? "border-red-500" : ""} resize-none p-2`}
         />
       ) : (
         <input
@@ -38,7 +38,7 @@ const Input = <TFieldValue extends FieldValues>({
           id={name}
           {...register(name)}
           disabled={disabled}
-          className={`block w-full input ${error ? "border-red-500" : ""}`}
+          className={`block w-full text-sm sm:text-base input ${error ? "border-red-500" : ""}`}
         />
       )}
       {error && <p className="mt-1 text-xs text-red-500">{error}</p>}

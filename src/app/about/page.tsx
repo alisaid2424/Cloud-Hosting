@@ -3,10 +3,12 @@ import cloudHosting from "../../../public/cloud-hosting.png";
 
 const AboutPage = () => {
   return (
-    <section className="container flex items-center justify-between flex-col lg:flex-row min-h-[calc(100vh-150px)]">
+    <section className="container max-w-7xl flex items-center justify-between flex-col lg:flex-row min-h-[calc(100vh-150px)]">
       <div className="basis-[45%]">
-        <h2 className="py-5 text-3xl font-bold">About This App</h2>
-        <p className="text-base text-gray-600 leading-[1.7]">
+        <h2 className="py-5 text-xl sm:text-3xl font-bold uppercase">
+          About This App
+        </h2>
+        <p className="text-sm sm:text-lg text-gray-600 leading-[1.7]">
           The best web hosting solution for your online success. Sed in
           consectetur dui, vel tristique metus. Sed gravida, nunc vel
           consectetur dictum, ligula nunc hendrerit dolor, non consectetur nunc

@@ -64,7 +64,7 @@ const LoginForm = () => {
       <button
         type="submit"
         disabled={isLoading}
-        className="text-xl text-white bg-blue-800 p-2 rounded-lg font-semibold disabled:cursor-not-allowed"
+        className="text-base sm:text-lg text-white bg-blue-800 py-2 rounded-lg font-semibold disabled:cursor-not-allowed"
       >
         {isLoading ? <ButtonSpinner /> : "Login"}
       </button>
