@@ -21,8 +21,8 @@ const AdminDashboardLayout = ({ children }: AdminDashboardLayoutProps) => {
   if (payload?.isAdmin === false) redirect("/");
 
   return (
-    <div className="h-[calc(100vh-150px)] flex items-start justify-between overflow-hidden">
-      <div className="h-full w-14 lg:w-52 bg-purple-600 text-white p-1 lg:p-5">
+    <div className="h-[calc(100vh-150px)] flex items-start justify-between overflow-hidden max-w-[96rem]">
+      <div className="h-full w-14 lg:w-60 bg-purple-600 text-white p-1 lg:p-5">
         <AdminSidebar />
       </div>
 

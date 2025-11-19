@@ -9,7 +9,7 @@ const AdminSidebar = () => {
     <>
       <Link
         href={route.admin}
-        className="flex items-center justify-center lg:justify-start text-lg lg:text-2xl font-semibold"
+        className="flex items-center justify-center lg:justify-start text-lg mt-3 lg:text-2xl font-semibold"
       >
         <CgMenuGridR className="text-3xl me-1" />
         <span className="hidden lg:block">Dashboard</span>

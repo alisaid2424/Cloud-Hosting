@@ -17,11 +17,9 @@ const ProfilePage = async () => {
   if (!user) notFound();
 
   return (
-    <div
-      className="absolute bg-cover w-[90%] md:w-2/4 rounded-lg top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 sm:my-5"
-      style={{ backgroundImage: "url(bg-profile.png)" }}
-    >
-      <div className="w-full bg-white bg-opacity-80 rounded-lg p-5 min-h-96">
+    <div className="flex items-center justify-center min-h-[calc(100vh-145px)]">
+      <div className="w-[90%] md:max-w-xl lg:max-w-2xl rounded-lg p-5 relative h-auto bg-[url('/bg-profile.png')] bg-cover object-cover">
+        <div className="absolute inset-0 bg-white/80 rounded-lg" />
         <Image
           src={imgProfile}
           width={120}
@@ -30,7 +28,7 @@ const ProfilePage = async () => {
           className="rounded-full absolute -top-7 left-1/2 -translate-x-1/2 -translate-y-7 w-32 h-32 object-cover"
         />
 
-        <div className="mt-16 text-center">
+        <div className="mt-16 text-center relative">
           <h2 className="text-3xl font-semibold text-gray-800">
             {user.username}
           </h2>
@@ -43,7 +41,7 @@ const ProfilePage = async () => {
           </p>
         </div>
 
-        <div className="mt-6 px-4 py-3 border-t border-gray-500">
+        <div className="mt-6 py-3 border-t border-gray-500 relative">
           <h3 className="text-xl font-semibold text-gray-800">
             Account Settings
           </h3>

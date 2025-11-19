@@ -25,7 +25,7 @@ const Navbar = ({ user }: { user: User }) => {
   return (
     <header className="sticky top-0 w-full z-50">
       <div
-        className={`${pathname.startsWith(route.admin) ? "px-6" : "container max-w-7xl"}  flex items-center justify-between py-5`}
+        className={`${pathname.startsWith(route.admin) ? "px-6 max-w-[96rem]" : "container max-w-7xl"}  flex items-center justify-between py-5`}
       >
         <Logo />
 
